@@ -96,9 +96,9 @@
 
   /* HERO */
   .hero {
-    min-height: 100vh;
-    display: flex; align-items: flex-end;
-    padding: 0 3rem 5rem;
+    min-height: 75vh; /* Se redujo el alto para que no ocupe toda la pantalla */
+    display: flex; align-items: center; /* Centrado vertical */
+    padding: 7rem 3rem 3rem; /* Espacio extra arriba por el nav */
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, #0D0D0D 0%, #161210 50%, #0D0D0D 100%);
@@ -120,8 +120,8 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 60%;
-    height: 100%;
+    width: 55%; /* Ligeramente más chica */
+    height: 90%;
     display: flex; align-items: flex-end;
   }
 
@@ -223,13 +223,15 @@
 
   .btn-ghost:hover { color: var(--text); }
 
+  /* Estadísticas integradas al bloque de texto para limpiar el diseño */
   .hero-stats {
-    position: absolute; right: 3rem; bottom: 5rem;
+    position: relative; 
     display: flex; gap: 2.5rem;
     z-index: 2;
+    margin-top: 4rem;
   }
 
-  .stat-item { text-align: right; }
+  .stat-item { text-align: left; }
 
   .stat-number {
     font-family: var(--font-display);
@@ -247,13 +249,14 @@
     margin-top: 0.2rem;
   }
 
-  /* FILTER BAR */
+  /* FILTER BAR - Ya no es sticky */
   .filter-section {
     background: var(--dark-2);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 1.5rem 3rem;
-    position: sticky; top: 73px; z-index: 80;
+    position: relative; 
+    z-index: 80;
   }
 
   .filter-inner {
@@ -851,12 +854,13 @@
       padding: 1rem 1.5rem;
     }
     .nav-links {
-      display: none; /* Ocultamos links para simplificar en móvil */
+      display: none;
     }
 
     /* Hero */
     .hero {
-      padding: 6rem 1.5rem 3rem;
+      min-height: auto;
+      padding: 7rem 1.5rem 3rem;
       align-items: center;
       text-align: center;
     }
@@ -864,12 +868,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 2rem;
     }
     .hero-car-area {
       width: 100%;
       height: 60%;
-      opacity: 0.3; /* Menos opacidad para que se lea el texto encima */
+      opacity: 0.3;
       z-index: 1;
     }
     .hero-eyebrow {
@@ -887,9 +890,6 @@
       justify-content: center;
     }
     .hero-stats {
-      position: relative;
-      right: auto;
-      bottom: auto;
       margin-top: 3rem;
       justify-content: center;
       flex-wrap: wrap;
@@ -922,13 +922,13 @@
       padding: 3rem 1.5rem;
     }
     .car-card.featured {
-      grid-column: span 1; /* El destacado ocupa 1 sola columna en móvil */
+      grid-column: span 1; 
     }
     .car-card.featured .car-image-area {
       aspect-ratio: 16/9;
     }
 
-    /* Sección CTA y Formulario */
+    /* CTA y Formulario */
     .cta-section {
       grid-template-columns: 1fr;
       padding: 3rem 1.5rem;
@@ -971,7 +971,7 @@
       padding: 1rem 1.5rem 1.5rem;
     }
     .modal-specs-grid {
-      grid-template-columns: 1fr 1fr; /* 2 columnas en lugar de 3 para especificaciones */
+      grid-template-columns: 1fr 1fr;
     }
     .modal-price-row {
       flex-direction: column;
@@ -989,6 +989,7 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">LQ Motors</a>
   <ul class="nav-links">
@@ -999,6 +1000,7 @@
   <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Agendar visita</button>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-lines"></div>
@@ -1020,24 +1022,26 @@
         <span>→</span>
       </button>
     </div>
+    
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">+80</div>
+        <div class="stat-label">Unidades disponibles</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">5★</div>
+        <div class="stat-label">Satisfacción</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">48hs</div>
+        <div class="stat-label">Gestión de transferencia</div>
+      </div>
+    </div>
   </div>
 
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-number">+80</div>
-      <div class="stat-label">Unidades disponibles</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">5★</div>
-      <div class="stat-label">Satisfacción</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">48hs</div>
-      <div class="stat-label">Gestión de transferencia</div>
-    </div>
-  </div>
 </section>
 
+<!-- FILTER BAR -->
 <section class="filter-section" id="stock">
   <div class="filter-inner">
     <span class="filter-label">Filtrar por</span>
@@ -1072,6 +1076,7 @@
   </div>
 </section>
 
+<!-- STOCK GRID -->
 <section class="stock-section">
   <div class="section-header">
     <h2 class="section-title">Stock disponible</h2>
@@ -1079,6 +1084,7 @@
   </div>
 
   <div class="cars-grid" id="cars-grid">
+    <!-- FEATURED -->
     <div class="car-card featured"
          data-marca="BMW" data-precio="72000" data-anio="2023" data-tipo="coupe"
          onclick="openModal('BMW','M4 Competition','2023','72.000','15.000 km','Nafta','510 CV','Azul Tanzanite','Automático 8v')">
@@ -1119,6 +1125,7 @@
       </div>
     </div>
 
+    <!-- CARD 2 -->
     <div class="car-card"
          data-marca="Mercedes-Benz" data-precio="58000" data-anio="2022" data-tipo="sedan"
          onclick="openModal('Mercedes-Benz','Clase C 300','2022','58.000','28.000 km','Nafta','258 CV','Blanco Polar','Automático 9G')">
@@ -1144,6 +1151,7 @@
       </div>
     </div>
 
+    <!-- CARD 3 -->
     <div class="car-card"
          data-marca="Audi" data-precio="42000" data-anio="2021" data-tipo="suv"
          onclick="openModal('Audi','Q5 45 TFSI','2021','42.000','41.000 km','Nafta','265 CV','Gris Daytona','Automático S tronic')">
@@ -1168,6 +1176,7 @@
       </div>
     </div>
 
+    <!-- CARD 4 -->
     <div class="car-card"
          data-marca="Toyota" data-precio="28000" data-anio="2022" data-tipo="suv"
          onclick="openModal('Toyota','RAV4 Hybrid','2022','28.000','33.000 km','Híbrido','222 CV','Rojo Emotional','CVT')">
@@ -1192,6 +1201,7 @@
       </div>
     </div>
 
+    <!-- CARD 5 -->
     <div class="car-card"
          data-marca="Volkswagen" data-precio="22000" data-anio="2023" data-tipo="sedan"
          onclick="openModal('Volkswagen','Vento 250 TSI','2023','22.000','8.000 km','Nafta','250 CV','Plata','Automático DSG')">
@@ -1217,6 +1227,7 @@
       </div>
     </div>
 
+    <!-- CARD 6 -->
     <div class="car-card"
          data-marca="Audi" data-precio="65000" data-anio="2023" data-tipo="suv"
          onclick="openModal('Audi','Q8 55 TFSI','2023','65.000','12.000 km','Nafta','340 CV','Negro Míthos','Automático tiptronic')">
@@ -1244,6 +1255,7 @@
   </div>
 </section>
 
+<!-- CTA SECTION -->
 <section class="cta-section" id="contacto">
   <div class="cta-content">
     <p class="label">Atención personalizada</p>
@@ -1290,6 +1302,7 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div>
     <div class="footer-logo">LQ Motors</div>
@@ -1317,6 +1330,7 @@
   </div>
 </footer>
 
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
