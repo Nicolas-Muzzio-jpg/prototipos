@@ -285,6 +285,7 @@
     background-repeat: no-repeat;
     background-position: right 0.8rem center;
     min-width: 140px;
+    flex: 1;
   }
 
   .filter-select:focus { border-color: var(--red); color: var(--text); }
@@ -330,7 +331,7 @@
 
   .cars-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5px;
     background: var(--border-light);
     border: 1px solid var(--border-light);
@@ -425,6 +426,7 @@
     display: flex; gap: 1.5rem;
     border-top: 1px solid var(--border-light);
     padding-top: 0.8rem;
+    flex-wrap: wrap;
   }
 
   .spec-item {
@@ -839,6 +841,150 @@
   }
 
   .watermark span { color: var(--red); }
+
+  /* =========================================================================
+     RESPONSIVE DESIGN (MÓVILES Y TABLETS)
+     ========================================================================= */
+  @media (max-width: 768px) {
+    /* Navegación */
+    nav {
+      padding: 1rem 1.5rem;
+    }
+    .nav-links {
+      display: none; /* Ocultamos links para simplificar en móvil */
+    }
+
+    /* Hero */
+    .hero {
+      padding: 6rem 1.5rem 3rem;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .hero-car-area {
+      width: 100%;
+      height: 60%;
+      opacity: 0.3; /* Menos opacidad para que se lea el texto encima */
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      justify-content: center;
+    }
+    .hero-eyebrow::before {
+      display: none;
+    }
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    .hero-actions button {
+      width: 100%;
+      justify-content: center;
+    }
+    .hero-stats {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      margin-top: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      width: 100%;
+    }
+    .stat-item {
+      text-align: center;
+    }
+
+    /* Filtros */
+    .filter-section {
+      padding: 1.5rem;
+    }
+    .filter-inner {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .filter-select {
+      width: 100%;
+    }
+    .filter-count {
+      margin-left: 0;
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* Grilla de Stock */
+    .stock-section {
+      padding: 3rem 1.5rem;
+    }
+    .car-card.featured {
+      grid-column: span 1; /* El destacado ocupa 1 sola columna en móvil */
+    }
+    .car-card.featured .car-image-area {
+      aspect-ratio: 16/9;
+    }
+
+    /* Sección CTA y Formulario */
+    .cta-section {
+      grid-template-columns: 1fr;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      gap: 2.5rem;
+    }
+    .cta-content p {
+      margin: 0 auto;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      text-align: center;
+      gap: 2rem;
+      padding: 3rem 1.5rem;
+    }
+    .footer-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Modal */
+    .modal {
+      max-height: 95vh;
+    }
+    .modal-header {
+      flex-direction: column;
+      padding: 1.5rem 1.5rem 0;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+    .modal-body {
+      padding: 1rem 1.5rem 1.5rem;
+    }
+    .modal-specs-grid {
+      grid-template-columns: 1fr 1fr; /* 2 columnas en lugar de 3 para especificaciones */
+    }
+    .modal-price-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .modal-price-row > div:last-child {
+      text-align: left;
+    }
+    .modal-row {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
 <body>
