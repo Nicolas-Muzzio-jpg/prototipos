@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LQ Motors — Stock Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #D32F2F;
+    --red-light: #F44336;
+    --dark: #0D0D0D;
+    --dark-2: #161616;
+    --dark-3: #1E1E1E;
+    --dark-4: #2A2A2A;
+    --text: #F5F0E8;
+    --text-muted: #8A8070;
+    --text-subtle: #5A5550;
+    --border: rgba(211, 47, 47, 0.18);
+    --border-light: rgba(245, 240, 232, 0.08);
+    --radius: 4px;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--red);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--red); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 0.55rem 1.4rem;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+
+  .nav-cta:hover {
+    background: var(--red);
+    color: var(--dark);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0D0D0D 0%, #161210 50%, #0D0D0D 100%);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 65% 45%, rgba(211,47,47,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 80% 50%, rgba(211,47,47,0.04) 0%, transparent 60%);
+  }
+
+  .hero-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(245,240,232,0.5) 60px);
+  }
+
+  .hero-car-area {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 60%;
+    height: 100%;
+    display: flex; align-items: flex-end;
+  }
+
+  .hero-car-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: flex-end; justify-content: center;
+    position: relative;
+  }
+
+  .hero-car-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(to right, transparent 5%, black 40%);
+    -webkit-mask-image: linear-gradient(to right, transparent 5%, black 40%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 580px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--red);
+    display: inline-block;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .hero-subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--red);
+    color: var(--text);
+    border: none;
+    padding: 0.9rem 2rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--red-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--text); }
+
+  .hero-stats {
+    position: absolute; right: 3rem; bottom: 5rem;
+    display: flex; gap: 2.5rem;
+    z-index: 2;
+  }
+
+  .stat-item { text-align: right; }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--red);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.2rem;
+  }
+
+  /* FILTER BAR */
+  .filter-section {
+    background: var(--dark-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 3rem;
+    position: sticky; top: 73px; z-index: 80;
+  }
+
+  .filter-inner {
+    display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-size: 11px;
+    color: var(--text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-right: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .filter-select {
+    background: var(--dark-3);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    padding: 0.55rem 2.2rem 0.55rem 1rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23D32F2F' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    min-width: 140px;
+  }
+
+  .filter-select:focus { border-color: var(--red); color: var(--text); }
+
+  .filter-count {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--text-subtle);
+    white-space: nowrap;
+  }
+
+  .filter-count span { color: var(--red); font-weight: 500; }
+
+  /* STOCK GRID */
+  .stock-section {
+    padding: 4rem 3rem 5rem;
+    background: var(--dark);
+  }
+
+  .section-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .section-link {
+    font-size: 12px;
+    color: var(--red);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .section-link:hover { border-color: var(--red); }
+
+  .cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5px;
+    background: var(--border-light);
+    border: 1px solid var(--border-light);
+  }
+
+  .car-card {
+    background: var(--dark-2);
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .car-card:hover { background: var(--dark-3); }
+
+  .car-card.featured {
+    grid-column: span 2;
+  }
+
+  .car-image-area {
+    aspect-ratio: 16/9;
+    background: var(--dark-3);
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .car-card.featured .car-image-area { aspect-ratio: 16/8; }
+
+  .car-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .car-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .car-card:hover .car-img-placeholder img {
+    transform: scale(1.05);
+  }
+
+  .car-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--red);
+    color: var(--text);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    z-index: 10;
+  }
+
+  .car-badge.new { background: rgba(13,13,13,0.8); color: var(--red); border: 1px solid var(--red); }
+
+  .car-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(13,13,13,0.8) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .car-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex; flex-direction: column; gap: 0.8rem;
+  }
+
+  .car-make {
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .car-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text);
+  }
+
+  .car-card.featured .car-name { font-size: 2rem; }
+
+  .car-specs {
+    display: flex; gap: 1.5rem;
+    border-top: 1px solid var(--border-light);
+    padding-top: 0.8rem;
+  }
+
+  .spec-item {
+    display: flex; flex-direction: column;
+  }
+
+  .spec-val {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .spec-key {
+    font-size: 10px;
+    color: var(--text-subtle);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+  }
+
+  .car-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 0.2rem;
+  }
+
+  .car-price {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .card-btn {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    padding: 0.45rem 1rem;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .card-btn:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    background: var(--dark-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .cta-content .label {
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .cta-content h2 {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+
+  .cta-content p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 380px;
+  }
+
+  /* LEAD FORM */
+  .lead-form {
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+  }
+
+  .form-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+    color: var(--text);
+  }
+
+  .form-subtitle {
+    font-size: 12px;
+    color: var(--text-subtle);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .form-input {
+    background: var(--dark-4);
+    border: 1px solid var(--border-light);
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 300;
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-input::placeholder { color: var(--text-subtle); }
+  .form-input:focus { border-color: var(--red); }
+
+  .form-select-wrap {
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+
+  .form-select-wrap select {
+    width: 100%;
+    background: var(--dark-4);
+    border: 1px solid var(--border-light);
+    color: var(--text-muted);
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 300;
+    border-radius: var(--radius);
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23D32F2F' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+  }
+
+  .form-select-wrap select:focus { border-color: var(--red); }
+
+  .form-submit {
+    width: 100%;
+    background: var(--red);
+    border: none;
+    color: var(--text);
+    padding: 0.9rem;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .form-submit:hover { background: var(--red-light); transform: translateY(-1px); }
+
+  .form-note {
+    font-size: 11px;
+    color: var(--text-subtle);
+    text-align: center;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem;
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--red);
+    text-transform: uppercase;
+  }
+
+  .footer-tagline {
+    font-size: 11px;
+    color: var(--text-subtle);
+    letter-spacing: 0.06em;
+    margin-top: 0.3rem;
+  }
+
+  .footer-links {
+    display: flex; gap: 2rem;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--text-subtle);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--red); }
+
+  .footer-social {
+    display: flex; gap: 1rem; align-items: center;
+  }
+
+  .social-btn {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-subtle);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+
+  .social-btn:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-header {
+    padding: 1.5rem 2rem 0;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+
+  .modal-make {
+    font-size: 11px; color: var(--red); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  .modal-name {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-top: 0.25rem;
+  }
+
+  .modal-close {
+    background: none; border: none;
+    color: var(--text-subtle); cursor: pointer;
+    font-size: 22px; line-height: 1;
+    padding: 0.25rem;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover { color: var(--text); }
+
+  .modal-body { padding: 1.5rem 2rem; }
+
+  .modal-specs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border-light);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-light);
+  }
+
+  .modal-spec {
+    background: var(--dark-3);
+    padding: 1rem;
+  }
+
+  .modal-spec-val { font-size: 15px; font-weight: 500; }
+  .modal-spec-key { font-size: 10px; color: var(--text-subtle); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 3px; }
+
+  .modal-price-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-price {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--red);
+  }
+
+  .modal-form-title {
+    font-size: 12px;
+    color: var(--text-subtle);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .modal-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-submit {
+    width: 100%;
+    background: var(--red);
+    border: none; color: var(--text);
+    padding: 0.9rem;
+    font-family: var(--font-body);
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; border-radius: var(--radius);
+    transition: all 0.2s; margin-top: 0.5rem;
+  }
+
+  .modal-submit:hover { background: var(--red-light); }
+
+  /* SUCCESS */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .success-msg.show { display: block; }
+
+  .success-icon {
+    width: 48px; height: 48px;
+    border: 2px solid var(--red);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 20px;
+    color: var(--red);
+  }
+
+  .success-msg h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .success-msg p {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero-title { animation: fadeUp 0.7s ease 0.2s both; }
+  .hero-subtitle { animation: fadeUp 0.7s ease 0.35s both; }
+  .hero-actions { animation: fadeUp 0.7s ease 0.45s both; }
+  .hero-stats { animation: fadeUp 0.7s ease 0.55s both; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--dark-4); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--red); }
+
+  /* WATERMARK */
+  .watermark {
+    position: fixed;
+    bottom: 1.5rem; right: 1.5rem;
+    font-size: 10px;
+    color: var(--text-subtle);
+    letter-spacing: 0.06em;
+    z-index: 50;
+    opacity: 0.5;
+  }
+
+  .watermark span { color: var(--red); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">LQ Motors</a>
+  <ul class="nav-links">
+    <li><a href="#stock">Stock</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">Agendar visita</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-car-area">
+    <div class="hero-car-placeholder">
+      <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?q=80&w=1600&auto=format&fit=crop" alt="Hero Car Premium">
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Concesionaria Seleccionada</p>
+    <h1 class="hero-title">Vehículos que<br><em>elevan</em> tu<br>estilo de vida</h1>
+    <p class="hero-subtitle">Stock seleccionado de autos premium. Financiación, permuta y entrega inmediata. Encontrá el tuyo en segundos.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('stock').scrollIntoView({behavior:'smooth'})">Ver stock completo</button>
+      <button class="btn-ghost" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+        <span>Agendar visita</span>
+        <span>→</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">+80</div>
+      <div class="stat-label">Unidades disponibles</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">5★</div>
+      <div class="stat-label">Satisfacción</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">48hs</div>
+      <div class="stat-label">Gestión de transferencia</div>
+    </div>
+  </div>
+</section>
+
+<section class="filter-section" id="stock">
+  <div class="filter-inner">
+    <span class="filter-label">Filtrar por</span>
+    <select class="filter-select" id="f-marca" onchange="filterCars()">
+      <option value="">Todas las marcas</option>
+      <option value="BMW">BMW</option>
+      <option value="Mercedes-Benz">Mercedes-Benz</option>
+      <option value="Audi">Audi</option>
+      <option value="Toyota">Toyota</option>
+      <option value="Volkswagen">Volkswagen</option>
+    </select>
+    <select class="filter-select" id="f-precio" onchange="filterCars()">
+      <option value="">Todo presupuesto</option>
+      <option value="0-30000">Hasta USD 30.000</option>
+      <option value="30000-60000">USD 30.000 – 60.000</option>
+      <option value="60000-999999">Más de USD 60.000</option>
+    </select>
+    <select class="filter-select" id="f-anio" onchange="filterCars()">
+      <option value="">Todos los años</option>
+      <option value="2023">2023</option>
+      <option value="2022">2022</option>
+      <option value="2021">2021</option>
+      <option value="2020">2020</option>
+    </select>
+    <select class="filter-select" id="f-tipo" onchange="filterCars()">
+      <option value="">Todos los tipos</option>
+      <option value="sedan">Sedán</option>
+      <option value="suv">SUV</option>
+      <option value="coupe">Coupé</option>
+    </select>
+    <span class="filter-count">Mostrando <span id="count-display">6</span> unidades</span>
+  </div>
+</section>
+
+<section class="stock-section">
+  <div class="section-header">
+    <h2 class="section-title">Stock disponible</h2>
+    <a href="#" class="section-link">Ver todo el catálogo →</a>
+  </div>
+
+  <div class="cars-grid" id="cars-grid">
+    <div class="car-card featured"
+         data-marca="BMW" data-precio="72000" data-anio="2023" data-tipo="coupe"
+         onclick="openModal('BMW','M4 Competition','2023','72.000','15.000 km','Nafta','510 CV','Azul Tanzanite','Automático 8v')">
+      <div class="car-image-area">
+        <div class="car-img-placeholder">
+          <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1000&auto=format&fit=crop" alt="BMW M4 Competition">
+        </div>
+        <div class="car-badge">Destacado</div>
+        <div class="car-overlay"></div>
+      </div>
+      <div class="car-body">
+        <span class="car-make">BMW</span>
+        <h3 class="car-name">M4 Competition Coupé</h3>
+        <div class="car-specs">
+          <div class="spec-item">
+            <span class="spec-val">2023</span>
+            <span class="spec-key">Año</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">15.000 km</span>
+            <span class="spec-key">Kilometraje</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">510 CV</span>
+            <span class="spec-key">Potencia</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-val">Nafta</span>
+            <span class="spec-key">Combustible</span>
+          </div>
+        </div>
+        <div class="car-footer">
+          <div>
+            <span class="car-price">USD 72.000</span>
+          </div>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('BMW','M4 Competition','2023','72.000','15.000 km','Nafta','510 CV','Azul Tanzanite','Automático 8v')">Consultar →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card"
+         data-marca="Mercedes-Benz" data-precio="58000" data-anio="2022" data-tipo="sedan"
+         onclick="openModal('Mercedes-Benz','Clase C 300','2022','58.000','28.000 km','Nafta','258 CV','Blanco Polar','Automático 9G')">
+      <div class="car-image-area">
+        <div class="car-img-placeholder">
+          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1000&auto=format&fit=crop" alt="Mercedes-Benz Clase C">
+        </div>
+        <div class="car-badge new">Nuevo ingreso</div>
+        <div class="car-overlay"></div>
+      </div>
+      <div class="car-body">
+        <span class="car-make">Mercedes-Benz</span>
+        <h3 class="car-name">Clase C 300 Sedán</h3>
+        <div class="car-specs">
+          <div class="spec-item"><span class="spec-val">2022</span><span class="spec-key">Año</span></div>
+          <div class="spec-item"><span class="spec-val">28.000 km</span><span class="spec-key">Km</span></div>
+          <div class="spec-item"><span class="spec-val">258 CV</span><span class="spec-key">Potencia</span></div>
+        </div>
+        <div class="car-footer">
+          <span class="car-price">USD 58.000</span>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('Mercedes-Benz','Clase C 300','2022','58.000','28.000 km','Nafta','258 CV','Blanco Polar','Automático 9G')">Consultar →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card"
+         data-marca="Audi" data-precio="42000" data-anio="2021" data-tipo="suv"
+         onclick="openModal('Audi','Q5 45 TFSI','2021','42.000','41.000 km','Nafta','265 CV','Gris Daytona','Automático S tronic')">
+      <div class="car-image-area">
+        <div class="car-img-placeholder">
+          <img src="https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?q=80&w=1000&auto=format&fit=crop" alt="Audi Q5">
+        </div>
+        <div class="car-overlay"></div>
+      </div>
+      <div class="car-body">
+        <span class="car-make">Audi</span>
+        <h3 class="car-name">Q5 45 TFSI Quattro</h3>
+        <div class="car-specs">
+          <div class="spec-item"><span class="spec-val">2021</span><span class="spec-key">Año</span></div>
+          <div class="spec-item"><span class="spec-val">41.000 km</span><span class="spec-key">Km</span></div>
+          <div class="spec-item"><span class="spec-val">SUV</span><span class="spec-key">Tipo</span></div>
+        </div>
+        <div class="car-footer">
+          <span class="car-price">USD 42.000</span>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('Audi','Q5 45 TFSI','2021','42.000','41.000 km','Nafta','265 CV','Gris Daytona','Automático S tronic')">Consultar →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card"
+         data-marca="Toyota" data-precio="28000" data-anio="2022" data-tipo="suv"
+         onclick="openModal('Toyota','RAV4 Hybrid','2022','28.000','33.000 km','Híbrido','222 CV','Rojo Emotional','CVT')">
+      <div class="car-image-area">
+        <div class="car-img-placeholder">
+          <img src="SUV.jpg" alt="Toyota RAV4 Hybrid">
+        </div>
+        <div class="car-overlay"></div>
+      </div>
+      <div class="car-body">
+        <span class="car-make">Toyota</span>
+        <h3 class="car-name">RAV4 Hybrid AWD</h3>
+        <div class="car-specs">
+          <div class="spec-item"><span class="spec-val">2022</span><span class="spec-key">Año</span></div>
+          <div class="spec-item"><span class="spec-val">33.000 km</span><span class="spec-key">Km</span></div>
+          <div class="spec-item"><span class="spec-val">Híbrido</span><span class="spec-key">Motor</span></div>
+        </div>
+        <div class="car-footer">
+          <span class="car-price">USD 28.000</span>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('Toyota','RAV4 Hybrid','2022','28.000','33.000 km','Híbrido','222 CV','Rojo Emotional','CVT')">Consultar →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card"
+         data-marca="Volkswagen" data-precio="22000" data-anio="2023" data-tipo="sedan"
+         onclick="openModal('Volkswagen','Vento 250 TSI','2023','22.000','8.000 km','Nafta','250 CV','Plata','Automático DSG')">
+      <div class="car-image-area">
+        <div class="car-img-placeholder">
+           <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1000&auto=format&fit=crop" alt="Volkswagen Vento">
+        </div>
+        <div class="car-badge new">Nuevo ingreso</div>
+        <div class="car-overlay"></div>
+      </div>
+      <div class="car-body">
+        <span class="car-make">Volkswagen</span>
+        <h3 class="car-name">Vento 250 TSI Highline</h3>
+        <div class="car-specs">
+          <div class="spec-item"><span class="spec-val">2023</span><span class="spec-key">Año</span></div>
+          <div class="spec-item"><span class="spec-val">8.000 km</span><span class="spec-key">Km</span></div>
+          <div class="spec-item"><span class="spec-val">Sedán</span><span class="spec-key">Tipo</span></div>
+        </div>
+        <div class="car-footer">
+          <span class="car-price">USD 22.000</span>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('Volkswagen','Vento 250 TSI','2023','22.000','8.000 km','Nafta','250 CV','Plata','Automático DSG')">Consultar →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-card"
+         data-marca="Audi" data-precio="65000" data-anio="2023" data-tipo="suv"
+         onclick="openModal('Audi','Q8 55 TFSI','2023','65.000','12.000 km','Nafta','340 CV','Negro Míthos','Automático tiptronic')">
+      <div class="car-image-area">
+        <div class="car-img-placeholder">
+          <img src="Audi.jpg" alt="Audi Q8">
+        </div>
+        <div class="car-badge">Premium</div>
+        <div class="car-overlay"></div>
+      </div>
+      <div class="car-body">
+        <span class="car-make">Audi</span>
+        <h3 class="car-name">Q8 55 TFSI Quattro</h3>
+        <div class="car-specs">
+          <div class="spec-item"><span class="spec-val">2023</span><span class="spec-key">Año</span></div>
+          <div class="spec-item"><span class="spec-val">12.000 km</span><span class="spec-key">Km</span></div>
+          <div class="spec-item"><span class="spec-val">340 CV</span><span class="spec-key">Potencia</span></div>
+        </div>
+        <div class="car-footer">
+          <span class="car-price">USD 65.000</span>
+          <button class="card-btn" onclick="event.stopPropagation(); openModal('Audi','Q8 55 TFSI','2023','65.000','12.000 km','Nafta','340 CV','Negro Míthos','Automático tiptronic')">Consultar →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contacto">
+  <div class="cta-content">
+    <p class="label">Atención personalizada</p>
+    <h2>¿Encontraste<br>tu próximo auto?</h2>
+    <p>Completá el formulario y uno de nuestros asesores te contacta en menos de una hora con toda la información, disponibilidad y opciones de financiación.</p>
+  </div>
+
+  <div class="lead-form">
+    <h3 class="form-title">Agendar visita</h3>
+    <p class="form-subtitle">Sin compromiso · Asesoramiento gratuito</p>
+    <div id="form-wrapper">
+      <div class="form-row">
+        <input type="text" class="form-input" placeholder="Nombre" id="f-nombre">
+        <input type="tel" class="form-input" placeholder="WhatsApp" id="f-tel">
+      </div>
+      <div class="form-select-wrap">
+        <select>
+          <option value="">¿Qué auto te interesa?</option>
+          <option>BMW M4 Competition — USD 72.000</option>
+          <option>Mercedes-Benz C 300 — USD 58.000</option>
+          <option>Audi Q5 Quattro — USD 42.000</option>
+          <option>Toyota RAV4 Hybrid — USD 28.000</option>
+          <option>Volkswagen Vento TSI — USD 22.000</option>
+          <option>Audi Q8 TFSI — USD 65.000</option>
+          <option>Otro / Consulta general</option>
+        </select>
+      </div>
+      <div class="form-select-wrap">
+        <select>
+          <option value="">Horario preferido</option>
+          <option>Mañana (9–12hs)</option>
+          <option>Mediodía (12–15hs)</option>
+          <option>Tarde (15–18hs)</option>
+        </select>
+      </div>
+      <button class="form-submit" onclick="submitLead()">Quiero que me contacten →</button>
+      <p class="form-note">Respondemos en menos de 1 hora en horario comercial</p>
+    </div>
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">✓</div>
+      <h3>¡Perfecto, <span id="s-nombre">te</span>!</h3>
+      <p>Recibimos tu consulta. Un asesor de LQ Motors<br>te va a contactar por WhatsApp en breve.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-logo">LQ Motors</div>
+    <div class="footer-tagline">Autos premium seleccionados · Buenos Aires</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">Stock</a>
+    <a href="#">Financiación</a>
+    <a href="#">Permuta</a>
+    <a href="#">Nosotros</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/lqmotors" class="social-btn" title="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="5"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a href="https://wa.me/54911" class="social-btn" title="WhatsApp">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div>
+        <p class="modal-make" id="m-make"></p>
+        <h3 class="modal-name" id="m-name"></h3>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-specs-grid">
+        <div class="modal-spec"><div class="modal-spec-val" id="m-anio"></div><div class="modal-spec-key">Año</div></div>
+        <div class="modal-spec"><div class="modal-spec-val" id="m-km"></div><div class="modal-spec-key">Kilometraje</div></div>
+        <div class="modal-spec"><div class="modal-spec-val" id="m-comb"></div><div class="modal-spec-key">Combustible</div></div>
+        <div class="modal-spec"><div class="modal-spec-val" id="m-pot"></div><div class="modal-spec-key">Potencia</div></div>
+        <div class="modal-spec"><div class="modal-spec-val" id="m-color"></div><div class="modal-spec-key">Color</div></div>
+        <div class="modal-spec"><div class="modal-spec-val" id="m-trans"></div><div class="modal-spec-key">Transmisión</div></div>
+      </div>
+      <div class="modal-price-row">
+        <div>
+          <div style="font-size:11px;color:var(--text-subtle);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">Precio</div>
+          <div class="modal-price">USD <span id="m-precio"></span></div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:11px;color:var(--text-subtle);margin-bottom:4px">Financiación disponible</div>
+          <div style="font-size:13px;color:var(--red)">Consultá cuotas →</div>
+        </div>
+      </div>
+      <div id="modal-form-section">
+        <p class="modal-form-title">Agendá una visita para este vehículo</p>
+        <div class="modal-row">
+          <input type="text" class="form-input" placeholder="Tu nombre" id="m-nombre-input">
+          <input type="tel" class="form-input" placeholder="WhatsApp" id="m-tel-input">
+        </div>
+        <input type="text" class="form-input" placeholder="¿Alguna consulta específica? (opcional)" style="width:100%;margin-bottom:0.75rem">
+        <button class="modal-submit" onclick="submitModalLead()">Quiero visitar este auto →</button>
+        <p class="form-note" style="margin-top:0.5rem">Te confirmamos turno por WhatsApp en menos de 1 hora</p>
+      </div>
+      <div class="success-msg" id="modal-success">
+        <div class="success-icon">✓</div>
+        <h3>¡Listo!</h3>
+        <p>Recibimos tu consulta sobre el <span id="ms-car"></span>.<br>Te contactamos a la brevedad.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="watermark">Prototipo por <span>nicolasmuzzio.com</span></div>
+
+<script>
+const cars = document.querySelectorAll('.car-card');
+
+function filterCars() {
+  const marca = document.getElementById('f-marca').value;
+  const precio = document.getElementById('f-precio').value;
+  const anio = document.getElementById('f-anio').value;
+  const tipo = document.getElementById('f-tipo').value;
+
+  let count = 0;
+  cars.forEach(card => {
+    const cm = card.dataset.marca || '';
+    const cp = parseInt(card.dataset.precio) || 0;
+    const ca = card.dataset.anio || '';
+    const ct = card.dataset.tipo || '';
+
+    let show = true;
+    if (marca && cm !== marca) show = false;
+    if (anio && ca !== anio) show = false;
+    if (tipo && ct !== tipo) show = false;
+    if (precio) {
+      const [min, max] = precio.split('-').map(Number);
+      if (cp < min || cp > max) show = false;
+    }
+
+    card.style.display = show ? '' : 'none';
+    if (show) count++;
+  });
+
+  document.getElementById('count-display').textContent = count;
+}
+
+let currentCar = '';
+
+function openModal(make, name, anio, precio, km, comb, pot, color, trans) {
+  document.getElementById('m-make').textContent = make;
+  document.getElementById('m-name').textContent = name;
+  document.getElementById('m-anio').textContent = anio;
+  document.getElementById('m-precio').textContent = precio;
+  document.getElementById('m-km').textContent = km;
+  document.getElementById('m-comb').textContent = comb;
+  document.getElementById('m-pot').textContent = pot;
+  document.getElementById('m-color').textContent = color;
+  document.getElementById('m-trans').textContent = trans;
+  currentCar = make + ' ' + name;
+  document.getElementById('modal-form-section').style.display = '';
+  document.getElementById('modal-success').classList.remove('show');
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function submitModalLead() {
+  const nombre = document.getElementById('m-nombre-input').value.trim();
+  document.getElementById('modal-form-section').style.display = 'none';
+  document.getElementById('ms-car').textContent = currentCar;
+  document.getElementById('modal-success').classList.add('show');
+}
+
+function submitLead() {
+  const nombre = document.getElementById('f-nombre').value.trim() || 'visitante';
+  document.getElementById('s-nombre').textContent = nombre;
+  document.getElementById('form-wrapper').style.display = 'none';
+  document.getElementById('success-msg').classList.add('show');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModalDirect();
+});
+</script>
+</body>
+</html>
